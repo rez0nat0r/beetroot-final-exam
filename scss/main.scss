@@ -1,0 +1,941 @@
+@import 'fonts';
+@import 'variables';
+@import 'mixins';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+// HEADER --------------------------------------------------
+
+.header {
+    @include BG(url(../img/bg/bg-header.jpg),no-repeat,50% 75%,cover);
+
+    &__container {
+        @include container;
+        height: 100vh;
+        padding: 0 30px;
+        position: relative;
+    }
+
+    &__menu {
+        @include dsFlex(auto,space-between);
+        padding: 0 30px;
+        position: relative;
+        height: 100%;
+
+        &-logo {
+            margin-top: 36px;
+            max-height: 72px;
+        }
+
+    }
+
+    &__nav {
+        margin-top: 59px;
+        width: 570px;
+
+        &-list {
+            list-style-type: none;
+            @include dsFlex(center,space-between);
+        }
+
+        &-link {
+            display: block;
+            color: $brightText;
+            @include fonts(24px,auto,none,uppercase);
+            font-family: "ProximaNova_SemiBold", sans-serif;
+            border: 2px solid transparent;
+
+            &:hover {
+                color: $darkButton;
+                border-bottom: 2px solid $darkButton;
+                text-decoration: none;
+            }
+        }
+    }
+
+     // BURGER MENU --------------------------------------
+
+     &__burger {
+        width: 30px;
+        padding: 15px 0;
+        position: absolute;
+        top: 10%;
+        right: 8%;	
+        z-index: 10;
+        font-size: 0;
+        color: transparent;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        display: none;
+        
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            .header__burger-item,
+            .header__burger-item:before,
+            .header__burger-item:after {
+                background-color: $darkButton;
+                ;	
+            }
+        }
+
+        &.active:hover {
+            .header__burger-item {
+                background: none;
+                transition: transform .2s linear;
+            }
+        }
+
+        &.active .header__burger-item {
+            background: none;
+            transition: transform .2s linear;
+        }
+
+        &.active .header__burger-item:before {
+            transform-origin: left top;
+            transform: rotate(-45deg) translate(2px,3px);
+            transition: transform .2s linear;	
+        }
+        
+        &.active .header__burger-item:after {
+            transform-origin: left bottom;
+            transform: rotate(45deg) translate(-2px,-5px);
+            transition: transform .2s linear;
+        }
+    
+
+        &-item {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: $brightText;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            transition: transform .2s linear;
+
+            &:after {
+                content: "";
+                width: 100%;
+                height: 3px;
+                background-color: $brightText;
+                position: absolute;
+                left: 0;
+                z-index: 10;
+                transition: transform .2s linear;
+            }
+
+            &::before {
+                content: "";
+                width: 100%;
+                height: 3px;
+                background-color: $brightText;
+                position: absolute;
+                left: 0;
+                z-index: 10;
+                transition: transform .2s linear;
+            }
+
+            &:after {
+                top: -8px;	
+            }
+
+            &:before {
+                bottom: -8px;	
+            }
+        }
+
+    }
+    
+    &__content {
+        @include PA(50%,50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 100%;
+        color: $brightText;
+
+        &-title {
+            font-family: "ProximaNova_Bold", sans-serif;
+            @include fonts(72px,auto,auto,uppercase);
+            line-height: 60px;
+        }
+
+        &-subtitle {
+            font-family: "PTSans_RegularItalic", sans-serif;
+            font-size: 30px;
+            margin-top: 35px;
+        }
+    }
+
+}
+
+// ABOUT US --------------------------------------------------
+
+.about {
+    background-color: $brightBGColor;
+    padding: 120px 0;
+
+    &__container {
+        @include container;
+        padding: 0 30px;
+    }
+
+    &__left {
+        width: 33%;
+        min-height: 555px;
+        float: left;
+        @include BG(url(../img/about_us.jpg),no-repeat,50%,cover);
+        text-align: center;
+        position: relative;
+    }
+
+    &__img {
+        margin-top: 75px;
+    }
+
+    &__title {
+        font-family: "ProximaNova_SemiBold", sans-serif;
+        margin-top: 45px;
+        @include fonts(36px,auto,auto,uppercase);
+        line-height: 47px;
+        color: $brightText;
+    }
+
+    &__right {
+        width: 54%;
+        float: right;
+        font-family: "PTSans_Regular", sans-serif;
+        font-size: 20px;
+        color: $darkText;
+        padding: 75px 0 100px;
+
+        & p {
+            margin-bottom: 30px;
+        }
+
+    }
+
+    &__btn {
+        display: block;
+        width: 200px;
+        height: 50px;
+        margin: 0 auto;
+        border: 1px solid $buttonText;
+        color: $buttonText;
+        @include fonts(20px,center,auto,auto);
+        font-family: "PTSans_RegularItalic", sans-serif;
+        cursor: pointer;
+        transition: 0.5s;
+
+        &:hover {
+            color: $darkButton;
+            border: 1px solid $darkButton;
+        }
+    }
+}
+
+// SERVICES --------------------------------------------------
+
+.services {
+    background-color: $brightBGColor;
+
+    &__container {
+        @include container;
+        max-height: 800px;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(2, auto);
+        grid-gap: 0;
+    }
+
+    &__item:first-child {
+        background-color: $servicesBGColor;
+        position: relative;
+    }
+
+    &__item:nth-child(2) {
+        position: relative;
+    }
+
+    &__item:nth-child(3) {
+        @include BG(url(../img/bg/bg-our_services.jpg),no-repeat,50% 100%,cover);
+        width: 86%;
+        position: relative;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 3;
+        grid-column-end: 4;
+
+    }
+
+    &__item:nth-child(4) {
+        position: relative;
+    }
+
+    &__item:last-child {
+        background-color: $servicesBGColor;
+        position: relative;
+    }
+
+    &__item-box {
+        @include PA(50%,50%);
+        transform: translate(-50%, -50%);
+        width: 80%;
+
+        &-big {
+            top: 34%;
+            width: 90%;
+        }
+    }
+
+    &__img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    &__title {
+        font-family: "PTSans_Bold", sans-serif;
+        @include fonts(24px,center,auto,uppercase);
+        margin: 30px;
+        color: $servicesTitleColor;
+
+        &-big {
+            font-family: "ProximaNova_SemiBold", sans-serif;
+            font-size: 36px;
+            margin: 50px 0 120px;
+            color: $servicesBigColor;
+        }
+    }
+
+    &__subtitle {
+        font-family: "PTSans_RegularItalic", sans-serif;
+        @include fonts(18px,center,auto,auto);
+        color: $servicesTitleColor;
+
+        &-big {
+            color: $servicesBigColor;
+        }
+
+        &-span {
+            font-weight: 700;
+        }
+    }
+}
+
+// WORKS --------------------------------------------------
+
+.works {
+    @include BG(url(../img/bg/bg-recent-works.jpg),no-repeat,50% 25%,cover);
+    padding: 50px 0 60px;
+
+    &__container {
+        @include container;
+        // height: 100vh;
+    }
+
+    &__icon {
+        display: block;
+        margin: 0 auto;
+    }
+
+    &__title {
+        font-family: "ProximaNova_SemiBold", sans-serif;
+        @include fonts(36px,center,auto,uppercase);
+        color: $servicesBigColor;
+        margin: 40px 0 70px;
+    }
+
+    &__btn {
+        display: block;
+        width: 200px;
+        height: 50px;
+        margin: 0 auto;
+        border: 1px solid $brightText;
+        color: $brightText;
+        font-family: "PTSans_RegularItalic", sans-serif;
+        @include fonts(20px,center,auto,auto);
+        cursor: pointer;
+        background-color: transparent;
+        transition: 0.5s;
+    
+        &:hover {
+            color: $darkButton;
+            border: 1px solid $darkButton;
+        }
+    }
+}
+
+// RECENT - SLIDER ------------------------------------------
+
+
+.slick-list {
+    overflow: hidden;
+}
+
+.slick-track {
+    @include dsFlex(flex-start,auto);
+}
+
+.works__slider {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    & .slick-arrow {
+        @include PA(50%,auto);
+        margin-top: -60px;
+        z-index: 1;
+        font-size: 0;
+        width: 30px;
+        height: 60px;
+        border: none;
+        cursor: pointer;
+    }
+
+    & .slick-arrow.slick-prev {
+        left: 0;
+        background: url(../img/arrow_left.png) 0 0 / 100% no-repeat;
+    }
+
+    & .slick-arrow.slick-next {
+        right: 0;
+        background: url(../img/arrow_right.png) 0 0 / 100% no-repeat;
+    }
+
+    & .slick-dots {
+        @include dsFlex(center,center);
+        padding: 35px;
+    }
+
+    & .slick-dots li {
+        list-style: none;
+        margin: 0px 6px;
+    }
+
+    & .slick-dots button {
+        font-size: 0;
+        width: 10px;
+        height: 10px;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 2px solid $brightText;
+        cursor: pointer;
+    }
+
+    & .slick-dots li.slick-active button {
+        background-color: $brightText;
+        border: 2px solid $brightText;
+    }
+
+    &__item {
+        transition: all 0.3s ease 0s;
+        text-align: center;
+        opacity: 0.4;
+
+        & .slick-center {
+            opacity: 1;
+        }
+    }
+
+    &-img {
+        display: block;
+        margin: 0 auto;
+        height: 100%; 
+        width: 100%; 
+        object-fit: contain;
+    }
+
+    &-item {
+        height: 540px;
+        width: 100%;
+    }
+}
+
+// TEAM --------------------------------------------------
+
+.team {
+    padding: 55px 0 100px;
+    background-color: $brightBGColor;
+
+    &__container {
+        @include container;
+    }
+
+    &__icon {
+        display: block;
+        margin: 0 auto 35px;
+    }
+
+    &__title {
+        font-family: "ProximaNova_SemiBold", sans-serif;
+        @include fonts(36px,center,auto,uppercase);
+        color: $servicesTitleColor;
+        margin-bottom: 55px;
+    }
+}
+
+// TEAM SLIDER --------------------------------------------------
+
+.team__slider {
+    position: relative;
+
+    &-element {
+        padding: 0 15px;
+        width: 28%;
+        min-height: 355px;
+    }
+    &-box {
+        background-color: $brightText;
+        &-name {
+            margin: 157px 0 30px;
+            color: $teamColor;
+            @include fonts(24px,center,auto,uppercase);
+            font-family: "ProximaNova_Bold", sans-serif;
+        }
+        &-position {
+            font-family: "PTSans_RegularItalic", sans-serif;
+            color: $servicesTitleColor;
+            @include fonts(24px,center,auto,auto);
+        }
+        &-social {
+            margin-top: 50px;
+            height: 70px;
+            background-color: $teamColor;
+            @include dsFlex(center,center);
+            text-align: center;
+            &-item {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: $brightBGColor;
+                margin-right: 13px;
+                line-height: 30px;
+                color: $teamColor;
+                cursor: pointer;
+                &:last-child {
+                    margin-right: 0;
+                }
+                &:hover {
+                    background-color: $brightText;
+                    color: $socialHover;
+                }
+            }
+        }
+    }
+    &-wrap {
+        width: 100%;
+        height: 117px;
+        background-color: $brightBGColor;
+    }
+    &-photo1 {
+        @include BG(url(../img/card__photo1.jpg),no-repeat,50%,cover);
+        @include teamPhoto;
+    }
+    &-photo2 {
+        @include BG(url(../img/card__photo2.jpg),no-repeat,50%,cover);
+        @include teamPhoto;
+    }
+    &-photo3 {
+        @include BG(url(../img/card__photo3.jpg),no-repeat,50%,cover);
+        @include teamPhoto;
+    }
+    &-photo4 {
+        @include BG(url(../img/card__photo4.jpg),no-repeat,50%,cover);
+        @include teamPhoto;
+    }
+    &-photo5 {
+        @include BG(url(../img/card__photo5.jpg),no-repeat,50%,cover);
+        @include teamPhoto;
+    }
+    &-photo6 {
+        @include BG(url(../img/card__photo6.png),no-repeat,50%,cover);
+        @include teamPhoto;
+    }
+
+    & .slick-arrow {
+        @include PA(50%,auto);
+        margin-top: -60px;
+        z-index: 1;
+        font-size: 0;
+        width: 30px;
+        height: 60px;
+        border: none;
+        cursor: pointer;
+        &.slick-prev {
+            left: -40px;
+            background: url(../img/team_arrow_left.png) 0 0 / 100% no-repeat;
+        }
+        &.slick-next {
+            right: -40px;
+            background: url(../img/team_arrow_right.png) 0 0 / 100% no-repeat;
+        }
+    }
+
+}
+
+// MAP --------------------------------------------------
+
+#map__location {
+    width: 100%;
+    height: 100vh;
+    @include PA(0,0);
+}
+
+.map {
+    position: relative;
+    height: 100vh;
+    background-color: $mapBGColor;
+    overflow: hidden;
+    &__top {
+        @include PA(30px,calc(50% - 250px / 2));
+        width: 245px;
+        text-align: center;
+    }
+    &__title {
+        font-family: "ProximaNova_SemiBold", sans-serif;
+        @include fonts(36px,auto,auto,uppercase);
+        margin-top: 25px;
+        color: $brightText;
+    }
+
+    &__field {
+        width: 50%;
+        padding: 15px 30px;
+        background: none;
+        border: none;
+        font-family: "PTSans_RegularItalic", sans-serif;
+        border-radius: 5px;
+        color: $inputText;
+        background-color: $inputBGColor;
+        font-style: italic;
+        font-size: 18px;
+        
+        &::placeholder {
+            color: $brightText;
+        }
+    }
+
+
+    &__input {
+        @include PA(auto,23%);
+        width: 55%;
+        bottom: 50px;
+        &-wrap {
+            @include dsFlex(auto,space-between);
+        }
+        &-name {
+            margin-right: 30px;
+        }
+        &-message {
+            width: 100%;
+            min-height: 200px;
+            margin-top: 27px;
+            resize: vertical;
+        }
+        &-btn {
+            display: block;
+            width: 34.30%;	
+            height: 66px;
+            margin: 30px auto 0;
+            line-height: 66px;
+            background-color: $teamColor;
+            border: 4px solid transparent;
+            border-bottom: 4px solid $borderBtnColor;
+            border-radius: 5px;
+            @include fonts(20px,center,auto,uppercase);
+            font-family: "ProximaNova_Bold", sans-serif;
+            color: $brightText;
+            cursor: pointer;
+        }
+        
+    }
+
+    &__btn {
+        @include PA(82%,83%);
+        width: 85px;
+        height: 85px;
+        transform: rotate(90deg);
+        background-color: $teamColor;
+        border: none;
+        cursor: pointer;
+    }
+    &__info {
+        @include PA(5%,auto);
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        &-address {
+            max-width: 300px;
+            max-height: 90px;
+            position: absolute;
+            margin-left: calc(100% - 90px);
+            &:hover, &:active {
+                cursor: pointer;
+                transition: 0.5s;
+                margin-left: calc(100% - 300px);
+            }
+        }
+        &-phone {
+            max-width: 300px;
+            max-height: 90px;
+            @include PA(90px,auto);
+            margin-left: calc(100% - 90px);
+            &:hover, &:active {
+                cursor: pointer;
+                transition: 0.5s;
+                margin-left: calc(100% - 300px);
+            }
+        }
+        &-icon {
+            display: block;
+        }
+        &-home {
+            width: 90px;
+            height: 90px;
+            background-color: $teamColor;
+            padding: 27px 25px;
+            display: block;
+            float: right;
+        }
+        &-number {
+            width: 90px;
+            height: 90px;
+            background-color: $teamColor;
+            padding: 27px 33px;
+            display: block;
+            float: right;
+        }
+        &-text1 {
+            width: 210px;
+            height: 90px;
+            background-color: $appearBGColor;
+            transition: 0.5s;
+            margin: -63px 0 0 65px;
+        }
+        &-text2 {
+            width: 210px;
+            height: 90px;
+            background-color: $appearBGColor;
+            transition: 0.5s;
+            margin: -61px 0 0 57px;
+        }
+        &-subscribe {
+            @include fonts(18px,center,auto,auto);
+            line-height: 25px;
+            color: $servicesTitleColor;
+            padding-top: 10px;
+        }
+        &-btn {
+            width: 90px;
+            height: 90px;
+            cursor: pointer;
+            border-bottom: 1px solid $borderBtnColor;
+        }
+    }
+}
+
+// FOOTER --------------------------------------------------
+
+.footer {
+    background-color: $teamColor;
+
+    &__container {
+        @include container;
+        @include dsFlex(auto,space-between);
+        align-items: center;
+        height: 185px;
+    }
+
+    &__box {
+        font-size: 18px;
+        font-family: "PTSans_Regular", sans-serif;
+        color: $brightText;
+    }
+
+    &__social {
+        display: flex;
+        text-align: center;
+
+        &-item {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $brightBGColor;
+            margin-right: 13px;
+            line-height: 30px;
+            color: $teamColor;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+
+        &-item:hover {
+            background-color: $brightText;
+            color: $socialHover;
+        }
+
+        &-item:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+// RESPONSIBLE --------------------------------------------------
+
+@media (max-width: 1200px) {
+
+    // HEADER
+
+    .header__content-title {
+        font-size: 60px;
+    }
+
+    // ABOUT 
+
+    .about {
+        padding: 30px 0;
+    }
+
+    .about__right {
+        text-align: justify;
+    }
+
+    // WORKS 
+
+    .works__slider .slick-arrow.slick-prev,
+    .works__slider .slick-arrow.slick-next {
+        display: none;
+    }
+
+    // MAP 
+
+    .map__icon {
+        width: 30px;
+        height: 100%;
+    }
+
+    .map__title {
+        font-size: 25px;
+    }
+
+
+}
+
+@media (max-width: 992px) {
+
+    // HEADER
+
+    .header__content-title {
+        font-size: 50px;
+    }
+
+    .header__content-subtitle {
+        font-size: 25px;
+    }
+    
+    // ABOUT
+
+    .about__left {
+        width: 100%;
+        display: block;
+        min-height: 250px;
+    }
+
+    .about__right {
+        width: 100%;
+        display: block;
+        padding: 25px 0;
+    }
+
+    // SERVICES 
+
+    .services__item-box-big {
+        top: 47%;
+        width: 90%;
+    }
+
+
+    // MAP 
+
+    .map__input-btn {
+        font-size: 15px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    // HEADER 
+
+    .header__content-title {
+        font-size: 40px;
+    }
+
+    .header__content-subtitle {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    .header__nav-list {
+		display: flex;
+		flex-direction: column;		
+	}
+
+    .header__nav {
+		position: absolute;
+		top: 0;
+		left: 35%;
+		right: 0;
+		bottom: 0;		
+		display: none;		
+		margin-top: 0;
+		width: 35%;
+		z-index: 1000;
+		transform-origin: center;
+		transform: scaleX(0);
+		transition: 0.75s;			
+	}
+
+	.header__nav.active {
+		display: block;
+		transform: scaleX(1);		
+	}
+
+	.header__nav-list {
+		display: flex;
+		flex-direction: column;	
+		margin-top: 15px;
+	}
+
+	.header__burger {
+		display: block;		
+	}
+
+	.header__nav-link {
+		padding: 5px 0;
+		text-align: center;	
+		font-size: 18px;		
+	}
+
+    // SERVICES 
+
+    .team__slider-box-name {
+        font-size: 18px;
+    }
+
+    .team__slider-box-position {
+        font-size: 18px;
+    }
+
+}

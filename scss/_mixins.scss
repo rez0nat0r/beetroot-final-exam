@@ -1,0 +1,39 @@
+@mixin BG($bg, $repeat, $position, $size) {
+    background: $bg;
+    background-repeat: $repeat;
+    background-position: $position;
+    background-size: $size;
+}
+
+@mixin dsFlex($a-items,$j-content) {
+    display: flex;
+    align-items: $a-items;
+    justify-content: $j-content;
+}
+
+@mixin PA($top,$left) {
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+
+@mixin fonts($f-size,$t-align,$t-decoration,$t-transform) {
+    font-size: $f-size;
+    text-align: $t-align;
+    text-decoration: $t-decoration;
+    text-transform: $t-transform;
+}
+
+@mixin teamPhoto {
+    width: 235px;
+    height: 235px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 10px solid #ebebeb;
+}
+
+@mixin container {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+}
